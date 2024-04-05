@@ -85,7 +85,7 @@ const broadcast = (ws, message, includeSelf) => {
         client.send('ping');
       }
     });
-  }, 50000);
+  }, 300000);
 };
 
 
