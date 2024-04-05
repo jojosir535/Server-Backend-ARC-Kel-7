@@ -20,11 +20,11 @@ server.listen(serverPort);
 console.log(`Server started on port ${serverPort} in stage ${process.env.NODE_ENV}`);
 
 wss.on("connection", function (ws, req) {
-  console.log("Connection Opened");
+  console.log("Koneksi dibuka");
   console.log("Client size: ", wss.clients.size);
 
   if (wss.clients.size === 1) {
-    console.log("first connection. starting keepalive");
+    console.log("Koneksi pertama. Memulai keepAlive");
     keepServerAlive();
   }
 
@@ -38,10 +38,10 @@ wss.on("connection", function (ws, req) {
   });
 
   ws.on("close", (data) => {
-    console.log("closing connection");
+    console.log("Menutup koneksi");
 
     if (wss.clients.size === 0) {
-      console.log("last client disconnected, stopping keepAlive interval");
+      console.log("User terakhir terputus, mengakhiri interval keepAlive");
       clearInterval(keepAliveId);
     }
   });
@@ -64,14 +64,11 @@ const broadcast = (ws, message, includeSelf) => {
   }
 };
 
-/**
- * Sends a ping message to all connected clients every 50 seconds
- */
  const keepServerAlive = () => {
   keepAliveId = setInterval(() => {
     wss.clients.forEach((client) => {
       if (client.readyState === WebSocket.OPEN) {
-        client.send('ping');
+        console.log('ping');
       }
     });
   }, 50000);
@@ -79,5 +76,5 @@ const broadcast = (ws, message, includeSelf) => {
 
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('Ini adalah server backend dari real-time chat.');
 });
