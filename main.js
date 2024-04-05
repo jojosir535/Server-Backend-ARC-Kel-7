@@ -35,6 +35,7 @@ wss.on("connection", function (ws, req) {
       console.log('keepAlive');
       return;
     }
+    saveChatToJSON(stringifiedData); // Save chat message to JSON file
     broadcast(ws, stringifiedData, false);
   });
 
