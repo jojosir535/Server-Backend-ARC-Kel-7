@@ -1,6 +1,7 @@
 const http = require("http");
 const express = require("express");
 const app = express();
+const fs = require('fs');
 
 app.use(express.static("public"));
 // require("dotenv").config();
@@ -46,6 +47,18 @@ wss.on("connection", function (ws, req) {
     }
   });
 });
+
+// Save chat data to a JSON file with timestamp
+const saveChatToJSON = (message) => {
+  const timestamp = new Date().toISOString();
+  const chatData = { timestamp, message };
+
+  fs.appendFile('chats.json', JSON.stringify(chatData) + '\n', (err) => {
+    if (err) {
+      console.error('Error writing chat data to file:', err);
+    }
+  });
+};
 
 // Implement broadcast function because of ws doesn't have it
 const broadcast = (ws, message, includeSelf) => {
