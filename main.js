@@ -92,3 +92,7 @@ const broadcast = (ws, message, includeSelf) => {
 app.get('/', (req, res) => {
     res.send('Ini adalah server backend dari real-time chat.');
 });
+
+app.get('/chats.json', (req, res) => {
+    res.sendFile('chats.json', { root: __dirname });
+});
