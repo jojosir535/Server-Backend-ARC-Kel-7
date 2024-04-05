@@ -1,20 +1,20 @@
 {
-  "name": "Socket-Server-Template",
+  "name": "tubes-kel-7-arc-2024",
   "version": "1.0.0",
-  "description": "Web Socket Node Server Example",
+  "description": "File tugas besar ARC 2024 Kelompok 7 (Jovi, Kenneth, Leon, Brian, Jovan)",
   "main": "main.js",
   "author": "Torin Blankensmith",
   "license": "MIT",
   "private": false,
+  "engines": {
+    "node": ">=8.9.0"
+  },
   "scripts": {
     "start": "node ./main.js",
     "dev": "NODE_ENV=development PORT=5000 node ./main.js"
   },
-  "engines": {
-    "node": ">=8.9.0"
-  },
   "dependencies": {
-    "express": "^4.17.1",
-    "ws": "^8.2.2"
+    "express": "^4.19.2",
+    "ws": "^8.16.0"
   }
 }
