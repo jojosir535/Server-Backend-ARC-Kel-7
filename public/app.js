@@ -1,5 +1,5 @@
 const establishWebSocketConnection = () => {
-    const ws = new WebSocket(`wss://server-backend-196-5d221cba3bbc.herokuapp.com/`);
+    const ws = new WebSocket(`wss://chatujuh-f7c2a97982c9.herokuapp.com/`);
     const messages = document.getElementById('messages');
     const messageInput = document.getElementById('messageInput');
     const sendButton = document.getElementById('sendButton');
