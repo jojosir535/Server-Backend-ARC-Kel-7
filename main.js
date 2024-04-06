@@ -2,9 +2,13 @@ const http = require("http");
 const express = require("express");
 const app = express();
 const fs = require('fs');
+const path = require('path');
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
 // require("dotenv").config();
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 const serverPort = process.env.PORT || 3000;
 const server = http.createServer(app);
@@ -54,7 +58,7 @@ const saveChatToJSON = (message) => {
   const timestamp = new Date().toISOString();
   const chatData = { timestamp, message };
 
-  fs.appendFile('chats.json', JSON.stringify(chatData) + '\n', (err) => {
+  fs.appendFile(path.join(__dirname, 'public', 'chats.json'), JSON.stringify(chatData) + '\n', (err) => {
     if (err) {
       console.error('Error writing chat data to file:', err);
     }
@@ -88,11 +92,6 @@ const broadcast = (ws, message, includeSelf) => {
   }, 300000);
 };
 
-
 app.get('/', (req, res) => {
-    res.send('Ini adalah server backend dari real-time chat.');
-});
-
-app.get('/chats.json', (req, res) => {
-    res.sendFile('chats.json', { root: __dirname });
+  res.render('index');
 });
