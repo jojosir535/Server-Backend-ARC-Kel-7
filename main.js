@@ -7,7 +7,6 @@ const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 // require("dotenv").config();
 
-app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 const serverPort = process.env.PORT || 3000;
@@ -92,6 +91,6 @@ const broadcast = (ws, message, includeSelf) => {
   }, 300000);
 };
 
-app.get('/', (req, res) => {
-  res.render('index');
+app.get('/', function(req, res) {
+    res.sendFile('views/index.html', {root: __dirname })
 });
